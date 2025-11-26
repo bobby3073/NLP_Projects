@@ -1,83 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Spam Classifier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Checker</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1e1e1e, #2c2c2c);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .container {
-            width: 40%;
-            margin: 100px auto;
-            padding: 25px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 450px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.2s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            transition: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #ffb300, #ff9100);
+            color: #000;
+            font-weight: 600;
             border-radius: 10px;
-            text-align: center;
         }
 
-        textarea {
-            width: 100%;
-            height: 120px;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #ffc928, #ff9800);
+            color: black;
         }
 
-        button {
-            margin-top: 15px;
-            width: 100%;
-            padding: 12px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        .result {
-            margin-top: 20px;
-            font-size: 22px;
-            font-weight: bold;
-            color: green;
-        }
-
-        .spam {
-            color: red;
-        }
-
-        .ham {
-            color: green;
+        h2 {
+            font-weight: 600;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h2>Spam Classifier</h2>
+<div class="glass-card text-white text-center">
+    <h2 class="mb-4">ATS Resume Checker</h2>
+    <p class="text-light mb-4" style="font-size: 14px;">
+        Upload your resume and get your ATS score instantly.
+    </p>
 
-        <form method="POST" action="/predict">
-            <textarea name="message" placeholder="Enter a message here..."></textarea>
-            <button type="submit">Check</button>
-        </form>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" class="form-control mb-3 p-2" required>
 
-        {% if prediction %}
-            <div class="result {{'spam' if prediction == 'SPAM' else 'ham'}}">
-                Result: {{ prediction }}
-            </div>
-        {% endif %}
-    </div>
+        <button class="btn btn-custom w-100 py-2">
+            Check ATS Score
+        </button>
+    </form>
+</div>
 
 </body>
 </html>
