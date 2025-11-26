@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        .spam {
+            color: red;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .ham {
+            color: green;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .button {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Prediction Result</h2>
+
+        {% if prediction == 1 %}
+            <p class="spam">🚨 This message is SPAM</p>
+        {% else %}
+            <p class="ham">✅ This message is NOT spam</p>
+        {% endif %}
+
+        <a href="/" class="button">Check Another Message</a>
+    </div>
+
+</body>
+</html>
